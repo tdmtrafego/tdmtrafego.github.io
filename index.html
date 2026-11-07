@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Thiego Dantas</title>
+<meta name="description" content="Thiego Dantas, Paid Media Specialist. Meta Ads, Google Ads e rastreamento do CRM até a venda.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: uma coluna estreita centralizada (cartão de visita), contatos em cima e trabalhos embaixo.
+   Mesma paleta do Painel de Tráfego e do case: Google = azul, Meta = verde-água. */
+:root {
+  color-scheme: dark;
+  --bg: #0b1220;
+  --surface: #121b2e;
+  --surface-hover: #18233a;
+  --border: #23304d;
+  --fg: #e6ebf5;
+  --muted: #8b96ad;
+  --google: #3e7bfa;
+  --meta: #14b8a6;
+  --good: #22c55e;
+  --sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(600px 300px at 50% -80px, color-mix(in srgb, var(--google) 18%, transparent), transparent 70%),
+    var(--bg);
+  color: var(--fg);
+  font: 15px/1.5 var(--sans);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+main { max-width: 480px; margin: 0 auto; padding-block: 56px 48px; display: flex; flex-direction: column; gap: 32px; }
+
+.profile { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+.avatar {
+  width: 104px; height: 104px; border-radius: 50%;
+  object-fit: cover;
+  background: var(--surface);
+  box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px color-mix(in srgb, var(--google) 70%, var(--meta));
+}
+h1 { margin: 6px 0 0; font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+.role { margin: 0; font: 500 13px/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.bio { margin: 4px 0 0; color: var(--muted); max-width: 40ch; text-wrap: balance; }
+.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 6px; }
+.chip { font: 500 11.5px/1 var(--mono); padding: 6px 9px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); }
+
+.group { display: flex; flex-direction: column; gap: 10px; }
+.label { font: 500 11.5px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); padding-left: 4px; }
+
+.link {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--fg);
+  text-decoration: none;
+  transition: background .15s, border-color .15s, transform .15s;
+}
+a.link:hover { background: var(--surface-hover); border-color: color-mix(in srgb, var(--google) 50%, var(--border)); transform: translateY(-1px); }
+a.link:focus-visible, button:focus-visible { outline: 2px solid var(--google); outline-offset: 2px; }
+.icon { width: 40px; height: 40px; flex: none; border-radius: 10px; display: grid; place-items: center; background: var(--bg); border: 1px solid var(--border); }
+.icon svg { width: 20px; height: 20px; }
+.text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.text strong { font-weight: 600; }
+.text span { font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }
+.go { color: var(--muted); font: 16px/1 var(--mono); }
+
+.link.work { flex-direction: column; align-items: stretch; gap: 10px; }
+.work-head { display: flex; align-items: center; gap: 14px; }
+.work p { margin: 0; font-size: 13.5px; color: var(--muted); }
+.badge { align-self: flex-start; font: 600 11px/1 var(--mono); padding: 5px 8px; border-radius: 6px; }
+.badge.live { color: var(--good); background: color-mix(in srgb, var(--good) 14%, transparent); }
+.badge.soon { color: var(--muted); background: var(--bg); border: 1px solid var(--border); }
+.link.disabled { opacity: 0.7; }
+
+.copy {
+  font: 500 12px/1 var(--sans); color: var(--fg);
+  background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+  padding: 8px 10px; cursor: pointer; flex: none;
+}
+.copy:hover { border-color: var(--google); }
+
+footer { text-align: center; color: var(--muted); font-size: 12.5px; }
+@media (prefers-reduced-motion: reduce) { .link { transition: none; } a.link:hover { transform: none; } }
+</style>
+</head>
+<body>
+<main>
+
+  <section class="profile">
+    <img class="avatar" src="foto.jpg" width="104" height="104" alt="Foto de Thiego Dantas">
+    <h1>Thiego Dantas</h1>
+    <p class="role">Paid Media Specialist</p>
+    <p class="bio">Meta Ads e Google Ads com o CRM conectado: otimizo pra visita e venda, não só pra lead.</p>
+    <div class="chips">
+      <span class="chip">Meta Ads</span>
+      <span class="chip">Google Ads</span>
+      <span class="chip">Conversions API</span>
+      <span class="chip">GTM</span>
+      <span class="chip">Make</span>
+      <span class="chip">Kommo</span>
+    </div>
+  </section>
+
+  <section class="group" aria-labelledby="contato">
+    <span class="label" id="contato">Contato</span>
+
+    <a class="link" href="https://www.linkedin.com/in/thiegodantasm" target="_blank" rel="noopener">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="#e6ebf5"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.06c.53-1 1.83-1.75 3.44-1.75 3.68 0 4.2 2.2 4.2 5.06v6.19h-4v-5.49c0-1.31-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9v5.59h-4v-11z"/></svg>
+      </span>
+      <span class="text"><strong>LinkedIn</strong><span>in/thiegodantasm</span></span>
+      <span class="go" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="link" href="https://wa.me/5579991101944?text=Ol%C3%A1%2C%20Thiego!%20Vi%20seu%20portf%C3%B3lio." target="_blank" rel="noopener">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.96L2 22l5.2-1.5A9.9 9.9 0 1 0 12.04 2zm0 18.1a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3.08.89.9-3-.2-.31a8.2 8.2 0 1 1 6.88 3.75zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.55.12-.16.25-.63.8-.78.96-.14.17-.29.19-.53.07a6.7 6.7 0 0 1-3.34-2.92c-.25-.43.25-.4.72-1.34.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47a.9.9 0 0 0-.65.3 2.74 2.74 0 0 0-.86 2.04c0 1.2.88 2.37 1 2.53.12.17 1.73 2.64 4.19 3.7 1.56.67 2.17.73 2.95.61.48-.07 1.46-.6 1.67-1.18.2-.58.2-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
+      </span>
+      <span class="text"><strong>WhatsApp</strong><span>+55 79 99110-1944</span></span>
+      <span class="go" aria-hidden="true">↗</span>
+    </a>
+
+    <div class="link">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#e6ebf5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      </span>
+      <span class="text"><strong>E-mail</strong><span id="email">tdm.trafego@gmail.com</span></span>
+      <button class="copy" type="button" id="copy-email">Copiar</button>
+    </div>
+  </section>
+
+  <section class="group" aria-labelledby="trabalhos">
+    <span class="label" id="trabalhos">Portfólio</span>
+
+    <a class="link work" href="https://tdmtrafego.github.io/portfolio-dashboard/" target="_blank" rel="noopener">
+      <div class="work-head">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M5 20V12" stroke="#3e7bfa"/><path d="M12 20V5" stroke="#14b8a6"/><path d="M19 20v-9" stroke="#a78bfa"/></svg>
+        </span>
+        <span class="text"><strong>Painel de Tráfego</strong><span>Dashboard interativo · dados reais</span></span>
+        <span class="go" aria-hidden="true">↗</span>
+      </div>
+      <p>Google Ads, Meta Ads e CRM numa visão só: funil do clique até a venda, saúde da operação e gargalos detectados automaticamente.</p>
+      <span class="badge live">NO AR</span>
+    </a>
+
+    <a class="link work" href="rastreamento/">
+      <div class="work-head">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#e6ebf5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 11.2 17 6.8M7 12.8l10 4.4"/></svg>
+        </span>
+        <span class="text"><strong>Rastreamento do CRM até a venda</strong><span>Case · Meta CAPI e Google Ads API</span></span>
+        <span class="go" aria-hidden="true">→</span>
+      </div>
+      <p>Conexão do CRM às duas plataformas, mandando cada etapa do funil até a venda. Nota dos eventos no Meta de 0,0 para 5,2.</p>
+      <span class="badge live">NO AR</span>
+    </a>
+  </section>
+
+  <footer>Dados reais de clientes, sempre anonimizados.</footer>
+</main>
+
+<script>
+  const btn = document.getElementById("copy-email");
+  const email = document.getElementById("email");
+  btn.addEventListener("click", () => {
+    const done = () => { btn.textContent = "Copiado"; setTimeout(() => (btn.textContent = "Copiar"), 1800); };
+    const fallback = () => {
+      const r = document.createRange(); r.selectNodeContents(email);
+      const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = "Selecionado";
+    };
+    try { navigator.clipboard.writeText(email.textContent).then(done, fallback); } catch { fallback(); }
+  });
+</script>
+</body>
+</html>
