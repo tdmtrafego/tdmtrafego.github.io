@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Thiego Dantas · Currículo</title>
+<meta name="description" content="Currículo de Thiego Dantas de Mecenas, Paid Media Specialist. Geração de leads para negócios locais e rastreamento de conversões.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Mesma paleta da página de links. Na impressão (PDF) vira fundo branco e texto preto. */
+:root {
+  color-scheme: dark;
+  --bg: #0b1220;
+  --surface: #121b2e;
+  --border: #23304d;
+  --fg: #e6ebf5;
+  --muted: #8b96ad;
+  --google: #3e7bfa;
+  --meta: #14b8a6;
+  --sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(700px 320px at 50% -100px, color-mix(in srgb, var(--google) 16%, transparent), transparent 70%),
+    var(--bg);
+  color: var(--fg);
+  font: 15px/1.55 var(--sans);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: inherit; }
+
+/* Idioma: cada texto existe em PT e EN, o atributo no <html> decide qual aparece */
+html[data-lang="pt"] [lang="en"], html[data-lang="en"] [lang="pt"] { display: none !important; }
+
+.toolbar { max-width: 760px; margin: 0 auto; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.back { color: var(--muted); text-decoration: none; font-size: 13.5px; }
+.back:hover { color: var(--fg); }
+.actions { display: flex; gap: 8px; align-items: center; }
+.langs { display: flex; gap: 4px; padding: 4px; border: 1px solid color-mix(in srgb, var(--google) 60%, transparent); background: color-mix(in srgb, var(--google) 10%, transparent); border-radius: 10px; }
+.langs button { font: 600 12.5px/1 var(--sans); letter-spacing: .04em; color: color-mix(in srgb, var(--fg) 80%, transparent); background: none; border: 0; border-radius: 7px; padding: 7px 10px; cursor: pointer; }
+.langs button[aria-pressed="true"] { background: var(--google); color: #fff; }
+.pdf { font: 600 13px/1 var(--sans); color: var(--fg); text-decoration: none; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; display: inline-flex; gap: 6px; align-items: center; }
+.pdf:hover { border-color: var(--google); }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--google); outline-offset: 2px; }
+
+main { max-width: 760px; margin: 16px auto 48px; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 36px 40px; }
+
+header.cv { display: flex; gap: 22px; align-items: center; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+.avatar { width: 92px; height: 92px; border-radius: 50%; object-fit: cover; flex: none; box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px color-mix(in srgb, var(--google) 70%, var(--meta)); }
+h1 { margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; }
+.role { margin: 6px 0 0; font: 500 12.5px/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--meta); }
+.contact { margin: 12px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 13.5px; color: var(--muted); }
+.contact a { text-decoration: none; }
+.contact a:hover { color: var(--fg); text-decoration: underline; }
+
+section { padding-top: 24px; }
+h2 { margin: 0 0 12px; font: 500 12px/1 var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+p { margin: 0; }
+.summary { font-size: 15.5px; max-width: 62ch; }
+
+.jobs { display: grid; gap: 20px; }
+.job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 4px 16px; flex-wrap: wrap; }
+h3 { margin: 0; font-size: 15.5px; font-weight: 600; }
+h3 .sub { font-weight: 400; color: var(--muted); }
+.when { font: 500 12px/1.4 var(--mono); color: var(--muted); white-space: nowrap; }
+.where { margin-top: 2px; font-size: 13.5px; color: var(--meta); }
+.job ul { margin: 8px 0 0; padding-left: 18px; font-size: 14px; display: grid; gap: 4px; }
+.job li::marker { color: var(--muted); }
+
+.items { display: grid; gap: 12px; }
+.item { display: grid; gap: 2px; }
+.item strong { font-weight: 600; }
+.item > span { color: var(--muted); font-size: 13.5px; }
+.item a { color: var(--google); text-decoration: none; }
+.item a:hover { text-decoration: underline; }
+
+.skills { display: grid; grid-template-columns: 150px 1fr; gap: 8px 16px; font-size: 14px; }
+.skills dt { color: var(--muted); }
+.skills dd { margin: 0; }
+
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
+
+@media (max-width: 600px) {
+  main { padding: 24px 18px; border-radius: 14px; }
+  header.cv { flex-direction: column; text-align: center; }
+  .contact { justify-content: center; }
+  .skills { grid-template-columns: 1fr; gap: 2px; }
+  .skills dd { margin-bottom: 8px; }
+  .two { grid-template-columns: 1fr; }
+}
+
+/* PDF: folha A4 branca, sem barra de ações */
+@page { size: A4; margin: 11mm 14mm; }
+@media print {
+  :root { color-scheme: light; --fg: #111827; --muted: #4b5563; --border: #d1d5db; --surface: #fff; --google: #1d4ed8; --meta: #0f766e; }
+  body { background: #fff; padding: 0; font-size: 9pt; line-height: 1.4; }
+  h1 { font-size: 19pt; }
+  h2 { margin-bottom: 6px; font-size: 7.5pt; break-after: avoid; }
+  h3 { font-size: 10pt; }
+  .summary { font-size: 9.5pt; max-width: none; }
+  .where, .item > span, .contact { font-size: 8.5pt; }
+  .when { font-size: 7.5pt; }
+  .skills { font-size: 9pt; gap: 3px 16px; grid-template-columns: 120px 1fr; }
+  .items { gap: 6px; }
+  header.cv { padding-bottom: 12px; gap: 16px; }
+  .contact { margin-top: 6px; }
+  .toolbar { display: none !important; }
+  .job { break-inside: avoid; }
+  .jobs { gap: 8px; }
+  .job ul { font-size: 9pt; gap: 1px; margin-top: 3px; }
+  main { margin: 0; max-width: none; border: 0; border-radius: 0; padding: 0; }
+  .avatar { width: 64px; height: 64px; box-shadow: none; }
+  section { padding-top: 11px; }
+  .contact a[href^="http"]::after { content: ""; }
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <a class="back" href="../"><span lang="pt">← Todos os meus links</span><span lang="en">← All my links</span></a>
+  <div class="actions">
+    <div class="langs" role="group" aria-label="Idioma / Language">
+      <button type="button" data-set-lang="pt">PT</button>
+      <button type="button" data-set-lang="en">EN</button>
+    </div>
+    <a class="pdf" lang="pt" href="curriculo-thiego-dantas.pdf" download>↓ Baixar PDF</a>
+    <a class="pdf" lang="en" href="resume-thiego-dantas.pdf" download>↓ Download PDF</a>
+  </div>
+</div>
+
+<main>
+  <header class="cv">
+    <img class="avatar" src="../foto.jpg" width="92" height="92" alt="Thiego Dantas">
+    <div>
+      <h1>Thiego Dantas de Mecenas</h1>
+      <p class="role">Paid Media Specialist</p>
+      <ul class="contact">
+        <li><span lang="pt">Aracaju, SE · Remoto</span><span lang="en">Aracaju, Brazil · Remote</span></li>
+        <li><a href="mailto:tdm.trafego@gmail.com">tdm.trafego@gmail.com</a></li>
+        <li><a href="https://www.linkedin.com/in/thiegodantasm">linkedin.com/in/thiegodantasm</a></li>
+        <li><a href="https://wa.me/5579991101944">+55 79 99110-1944</a></li>
+        <li><a href="https://tdmtrafego.github.io">tdmtrafego.github.io</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section>
+    <h2><span lang="pt">Resumo</span><span lang="en">Summary</span></h2>
+    <p class="summary" lang="pt">Gestor de tráfego especializado em geração de leads para negócios locais. Conecto Meta Ads e Google Ads ao CRM e rastreio cada conversão até a venda, pra que as campanhas otimizem pelo que gera faturamento, não só pelo volume de leads.</p>
+    <p class="summary" lang="en">Paid media specialist focused on lead generation for local businesses. I connect Meta Ads and Google Ads to the CRM and track every conversion through to the sale, so campaigns optimize for revenue, not just lead volume.</p>
+  </section>
+
+  <section>
+    <h2><span lang="pt">Experiência</span><span lang="en">Experience</span></h2>
+    <div class="jobs">
+
+      <article class="job">
+        <div class="job-head">
+          <h3>Paid Media Specialist <span class="sub">| Lead Optimization</span></h3>
+          <span class="when"><span lang="pt">mar 2025 – atual</span><span lang="en">Mar 2025 – present</span></span>
+        </div>
+        <p class="where"><span lang="pt">Cômodo · Agência digital para móveis planejados · Tempo integral · Remoto</span><span lang="en">Cômodo · Digital agency for custom furniture · Full-time · Remote</span></p>
+        <ul lang="pt">
+          <li>Gestão de Meta Ads e Google Ads de mais de 15 clientes ativos, em sua maioria negócios locais de móveis planejados e design de interiores, com foco em geração de leads.</li>
+          <li>Implementação do rastreamento do CRM até a venda: Meta Conversions API e conversões offline no Google Ads, integrando Kommo e Make.</li>
+          <li>Gestão de orçamento em várias contas e otimização contínua de CPA, CTR, taxa de conversão e qualidade do lead.</li>
+          <li>Criação de um dashboard que une Google Ads, Meta Ads e CRM pra acompanhar o funil do clique até a venda.</li>
+        </ul>
+        <ul lang="en">
+          <li>Manage Meta Ads and Google Ads for 15+ active clients, mostly local custom furniture and interior design businesses, focused on lead generation.</li>
+          <li>Implemented CRM-to-sale tracking: Meta Conversions API and Google Ads offline conversions, integrating Kommo and Make.</li>
+          <li>Multi-account budget management and continuous optimization of CPA, CTR, conversion rate and lead quality.</li>
+          <li>Built a dashboard combining Google Ads, Meta Ads and CRM data to follow the funnel from click to sale.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <h3>Media Buyer <span class="sub">| Creative Strategist</span></h3>
+          <span class="when"><span lang="pt">mai 2024 – dez 2024</span><span lang="en">May 2024 – Dec 2024</span></span>
+        </div>
+        <p class="where"><span lang="pt">Pontuei · Autônomo · Aracaju, SE</span><span lang="en">Pontuei · Freelance · Aracaju, Brazil</span></p>
+        <ul lang="pt">
+          <li>Estruturação e gestão de campanhas de Meta Ads e Google Ads para clientes com objetivos de negócio diferentes.</li>
+          <li>Definição de estrutura, públicos e orçamento alinhados às metas do cliente e às etapas do funil.</li>
+          <li>Estratégia focada em performance, com prioridade para rastreamento de conversões e otimização contínua.</li>
+          <li>Recomendações de otimização para os clientes a partir dos dados de performance.</li>
+        </ul>
+        <ul lang="en">
+          <li>Set up and managed Meta Ads and Google Ads campaigns for clients with different business goals.</li>
+          <li>Defined campaign structure, audiences and budget aligned with client goals and funnel stages.</li>
+          <li>Performance-focused strategy, prioritizing conversion tracking and continuous optimization.</li>
+          <li>Delivered optimization recommendations to clients based on performance data.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <h3>Paid Media Manager <span class="sub">| Performance Marketing</span></h3>
+          <span class="when"><span lang="pt">ago 2023 – out 2024</span><span lang="en">Aug 2023 – Oct 2024</span></span>
+        </div>
+        <p class="where"><span lang="pt">Astro Ads · Autônomo · Belo Horizonte, MG</span><span lang="en">Astro Ads · Freelance · Belo Horizonte, Brazil</span></p>
+        <ul lang="pt">
+          <li>Gestão de campanhas para produtos digitais e ofertas online, com verba mensal acima de R$ 30 mil.</li>
+          <li>Planejamento e otimização em Meta Ads e Google Ads de acordo com cada etapa do funil.</li>
+          <li>Melhoria de CPA, CTR e taxa de conversão com testes contínuos e análise de dados.</li>
+        </ul>
+        <ul lang="en">
+          <li>Managed campaigns for digital products and online offers, with monthly ad budgets above R$30,000.</li>
+          <li>Planned and optimized Meta Ads and Google Ads campaigns for each funnel stage.</li>
+          <li>Improved CPA, CTR and conversion rate through continuous testing and data analysis.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <h3>Media Buyer <span class="sub">| SEO</span></h3>
+          <span class="when"><span lang="pt">jun 2022 – ago 2023</span><span lang="en">Jun 2022 – Aug 2023</span></span>
+        </div>
+        <p class="where"><span lang="pt">Scale Ads Group · Tempo integral · Aracaju, SE</span><span lang="en">Scale Ads Group · Full-time · Aracaju, Brazil</span></p>
+        <ul lang="pt">
+          <li>Gestão de campanhas de Meta Ads e Google Ads.</li>
+          <li>SEO e produção de conteúdo para blog, com foco em tráfego orgânico.</li>
+          <li>Criação de briefings para criativos.</li>
+        </ul>
+        <ul lang="en">
+          <li>Managed Meta Ads and Google Ads campaigns.</li>
+          <li>SEO and blog content creation focused on organic traffic.</li>
+          <li>Wrote creative briefs for ad production.</li>
+        </ul>
+      </article>
+
+    </div>
+  </section>
+
+  <section>
+    <h2><span lang="pt">Portfólio</span><span lang="en">Portfolio</span></h2>
+    <div class="items">
+      <div class="item">
+        <strong><a href="https://tdmtrafego.github.io/portfolio-dashboard/"><span lang="pt">Painel de Tráfego</span><span lang="en">Paid Media Dashboard</span></a></strong>
+        <span lang="pt">Dashboard interativo com dados reais (cliente anonimizado): Google Ads, Meta Ads e CRM numa visão só, do clique até a venda.</span>
+        <span lang="en">Interactive dashboard with real data (client anonymized): Google Ads, Meta Ads and CRM in one view, from click to sale.</span>
+      </div>
+      <div class="item">
+        <strong><a href="https://tdmtrafego.github.io/rastreamento/"><span lang="pt">Rastreamento do CRM até a venda</span><span lang="en">CRM-to-sale conversion tracking</span></a></strong>
+        <span lang="pt">Case de Meta Conversions API e Google Ads API enviando cada etapa do funil. Nota dos eventos no Meta de 0,0 para 5,2.</span>
+        <span lang="en">Case study: Meta Conversions API and Google Ads API sending every funnel stage. Meta event match quality from 0.0 to 5.2.</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span lang="pt">Competências e ferramentas</span><span lang="en">Skills and tools</span></h2>
+    <dl class="skills">
+      <dt><span lang="pt">Mídia paga</span><span lang="en">Paid media</span></dt>
+      <dd>Meta Ads, Google Ads (Search, Performance Max)</dd>
+      <dt><span lang="pt">Rastreamento</span><span lang="en">Tracking</span></dt>
+      <dd>Meta Conversions API, Google Ads API <span lang="pt">(conversões offline)</span><span lang="en">(offline conversions)</span>, Google Tag Manager, UTMs</dd>
+      <dt><span lang="pt">CRM e automação</span><span lang="en">CRM and automation</span></dt>
+      <dd>Kommo, Make</dd>
+      <dt><span lang="pt">IA</span><span lang="en">AI</span></dt>
+      <dd>Claude AI</dd>
+    </dl>
+  </section>
+
+  <div class="two">
+    <section>
+      <h2><span lang="pt">Formação</span><span lang="en">Education</span></h2>
+      <div class="items">
+        <div class="item">
+          <strong><span lang="pt">Engenharia Civil</span><span lang="en">Civil Engineering</span></strong>
+          <span lang="pt">Bacharelado</span><span lang="en">Bachelor's degree</span>
+        </div>
+        <div class="item">
+          <strong>Comunidade Sobral</strong>
+          <span lang="pt">Certificação em gestão de tráfego pela maior comunidade de gestores de tráfego do Brasil</span>
+          <span lang="en">Paid media certification from Brazil's largest community of paid media specialists</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span lang="pt">Idiomas</span><span lang="en">Languages</span></h2>
+      <div class="items">
+        <div class="item">
+          <strong><span lang="pt">Português</span><span lang="en">Portuguese</span></strong>
+          <span lang="pt">Nativo</span><span lang="en">Native</span>
+        </div>
+        <div class="item">
+          <strong><span lang="pt">Inglês</span><span lang="en">English</span></strong>
+          <span lang="pt">Intermediário-avançado</span><span lang="en">Upper-intermediate</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+  // Idioma: ?lang= na URL, depois a última escolha salva, depois português.
+  (function () {
+    const root = document.documentElement;
+    let lang = "pt";
+    try {
+      const q = new URLSearchParams(location.search).get("lang");
+      const saved = localStorage.getItem("painel-lang");
+      lang = q === "en" || q === "pt" ? q : saved === "en" ? "en" : "pt";
+    } catch (e) {}
+    function apply(l) {
+      root.dataset.lang = l;
+      root.lang = l === "en" ? "en" : "pt-BR";
+      document.title = l === "en" ? "Thiego Dantas · Resume" : "Thiego Dantas · Currículo";
+      document.querySelectorAll("[data-set-lang]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.setLang === l)));
+    }
+    apply(lang);
+    document.querySelectorAll("[data-set-lang]").forEach((b) =>
+      b.addEventListener("click", () => {
+        const l = b.dataset.setLang;
+        apply(l);
+        try {
+          localStorage.setItem("painel-lang", l);
+          const u = new URL(location.href); u.searchParams.set("lang", l); history.replaceState(null, "", u);
+        } catch (e) {}
+      })
+    );
+  })();
+</script>
+</body>
+</html>
