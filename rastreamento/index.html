@@ -5,6 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Rastreamento do CRM até a venda</title>
 <meta name="description" content="Case: conexão do CRM (Kommo) ao Meta Ads e ao Google Ads via Make, mandando cada etapa do funil até a venda. Loja de móveis planejados, cliente anonimizado.">
+<script>
+  // Idioma escolhido antes de desenhar a página: ?lang= na URL, depois a escolha salva, depois português.
+  (function () {
+    var l = "pt";
+    try {
+      var q = new URLSearchParams(location.search).get("lang");
+      var s = localStorage.getItem("painel-lang");
+      l = q === "en" || q === "pt" ? q : s === "en" ? "en" : "pt";
+    } catch (e) {}
+    document.documentElement.dataset.lang = l;
+    document.documentElement.lang = l === "en" ? "en" : "pt-BR";
+    if (l === "en") document.title = "CRM-to-sale conversion tracking";
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -39,7 +53,16 @@ body {
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
-.wrap { max-width: 860px; margin: 0 auto; padding-block: 56px 72px; display: flex; flex-direction: column; gap: 56px; }
+.wrap { max-width: 860px; margin: 0 auto; padding-block: 32px 72px; display: flex; flex-direction: column; gap: 56px; }
+/* Cada idioma tem o seu <main>; o atributo no <html> decide qual aparece */
+html[data-lang="pt"] [lang="en"], html[data-lang="en"] [lang="pt"] { display: none !important; }
+.topbar { max-width: 860px; margin: 0 auto; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.back { color: var(--muted); text-decoration: none; font-size: 13.5px; }
+.back:hover { color: var(--fg); }
+.langs { display: flex; gap: 4px; padding: 4px; border: 1px solid color-mix(in srgb, var(--google) 60%, transparent); background: color-mix(in srgb, var(--google) 10%, transparent); border-radius: 10px; }
+.langs button { font: 600 12.5px/1 var(--sans); letter-spacing: .04em; color: color-mix(in srgb, var(--fg) 80%, transparent); background: none; border: 0; border-radius: 7px; padding: 7px 10px; cursor: pointer; }
+.langs button[aria-pressed="true"] { background: var(--google); color: #fff; }
+.langs button:focus-visible { outline: 2px solid var(--google); outline-offset: 2px; }
 h1, h2, h3 { margin: 0; text-wrap: balance; line-height: 1.2; }
 h1 { font-size: clamp(28px, 5vw, 40px); font-weight: 700; letter-spacing: -0.02em; }
 h2 { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
@@ -142,7 +165,15 @@ a:focus-visible { outline: 2px solid var(--google); outline-offset: 2px; }
 </style>
 </head>
 <body>
-<main class="wrap">
+<div class="topbar">
+  <a class="back" href="../"><span lang="pt">← Todos os meus links</span><span lang="en">← All my links</span></a>
+  <div class="langs" role="group" aria-label="Idioma / Language">
+    <button type="button" data-set-lang="pt" title="Português">PT</button>
+    <button type="button" data-set-lang="en" title="English">EN</button>
+  </div>
+</div>
+
+<main class="wrap" lang="pt">
 
 <header>
   <span class="eyebrow">Case de rastreamento · out a nov/2026</span>
@@ -384,5 +415,273 @@ order_id = <span class="s">"{id_do_lead}"</span>                    <span class=
 </footer>
 
 </main>
+
+<main class="wrap" lang="en">
+
+<header>
+  <span class="eyebrow">Tracking case study · Oct to Nov 2026</span>
+  <h1>CRM-to-sale conversion tracking</h1>
+  <p class="lead">A custom furniture store in São Paulo was investing in Meta Ads and Google Ads, but both platforms only knew who filled out the form. I connected the CRM to both, sending every step the lead takes in the funnel, from first contact to the sale with its real value, so the bidding algorithms would start looking for people similar to the ones who buy.</p>
+  <div class="tags">
+    <span class="tag"><i>Kommo</i> CRM</span>
+    <span class="tag"><i>Make</i> automation</span>
+    <span class="tag"><i>Meta</i> Conversions API</span>
+    <span class="tag"><i>Google Ads</i> API and enhanced conversions</span>
+    <span class="tag"><i>GTM</i> website form</span>
+  </div>
+</header>
+
+<section aria-label="Key numbers">
+  <div class="stats">
+    <div class="stat meta">
+      <span class="v">0.0 <small>→</small> 5.2</span>
+      <span class="k">Event match quality of CRM events in Meta (SAL was 0.0; now 5.2 on Lead and 4.8 on SAL and Sale)</span>
+    </div>
+    <div class="stat meta">
+      <span class="v">2.5x</span>
+      <span class="k">More events reaching Meta, now including WhatsApp leads and manually created leads</span>
+    </div>
+    <div class="stat google">
+      <span class="v">3.5 <small>months</small></span>
+      <span class="k">Of lost Google signal recovered: 384 conversions re-sent with the real date of each stage</span>
+    </div>
+    <div class="stat google">
+      <span class="v">23 to 35%</span>
+      <span class="k">Of leads arrived without a GCLID and never became a conversion in Google. Now they count, matched by phone and email</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">01 · Diagnosis</span>
+  <h2>What was broken</h2>
+  <p class="prose muted">The business has a long sales cycle and an average ticket of around R$22,000. What matters is booked visits and sales, not form fills. Before touching any campaign, I mapped what each platform was actually receiving.</p>
+  <div class="issues">
+    <article class="issue">
+      <span class="pill google">GOOGLE ADS</span>
+      <h3>No stage signal for 3.5 months</h3>
+      <p>The automation that sent CRM stages had been <strong>off since July</strong>, and nobody noticed. Bidding optimized for form fills only.</p>
+    </article>
+    <article class="issue">
+      <span class="pill google">GOOGLE ADS</span>
+      <h3>Only leads with a GCLID were sent</h3>
+      <p>The Make module in use accepted GCLID only. Between <strong>23% and 35% of leads</strong> arrived without one and were never sent.</p>
+    </article>
+    <article class="issue">
+      <span class="pill meta">META ADS</span>
+      <h3>Events with no customer data</h3>
+      <p>Stages were sent with the lead form ID only. Meta doesn't use that ID for the quality score, which sat at <strong>0.0</strong>. Phone and email were read from the CRM but never sent.</p>
+    </article>
+    <article class="issue">
+      <span class="pill meta">META ADS</span>
+      <h3>WhatsApp leads dropped</h3>
+      <p>Sending required the form ID. <strong>151 of 500 leads</strong> over two months were left out, sales included.</p>
+    </article>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">02 · Solution</span>
+  <h2>One trigger, two platforms</h2>
+  <p class="prose muted">Every stage change in the CRM fires a webhook to Make. The scenario reads the lead and the contact, normalizes the data, works out where the lead came from and sends the event only to the right platform.</p>
+
+  <div class="flow" role="img" aria-label="Flow: the card changes stage in Kommo, a webhook triggers Make, which sends the event to Meta through the Conversions API or to Google through the conversion upload API">
+    <div class="node crm">
+      <h3><span class="dot" style="background:var(--crm)"></span>Kommo</h3>
+      <span class="sub">Card moves to a new funnel stage</span>
+      <ul><li>Lead received</li><li>In contact</li><li>Visit booked</li><li>Visit completed</li><li>Sale</li></ul>
+    </div>
+    <div class="arrow" aria-hidden="true"></div>
+    <div class="node">
+      <h3><span class="dot" style="background:var(--fg)"></span>Make</h3>
+      <span class="sub">One scenario per platform, same webhook</span>
+      <ul>
+        <li>Reads lead and contact</li>
+        <li>Phone with country code 55, lowercase email</li>
+        <li>State and city from the area code</li>
+        <li>Source from GCLID, form ID and UTM</li>
+        <li>Errors don't break the scenario</li>
+      </ul>
+    </div>
+    <div class="arrow" aria-hidden="true"></div>
+    <div class="lanes">
+      <div class="node meta">
+        <h3><span class="dot" style="background:var(--meta)"></span>Meta · Conversions API</h3>
+        <span class="sub">Form, WhatsApp and unknown-source leads. Google leads are left out.</span>
+      </div>
+      <div class="node google">
+        <h3><span class="dot" style="background:var(--google)"></span>Google · Conversion upload API</h3>
+        <span class="sub">Google leads, with GCLID when available and SHA-256 hashed phone and email every time.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr><th>CRM stage</th><th>Meta event</th><th>Google conversion</th><th class="r">Google value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Lead received</td><td>Lead - Received</td><td>Website form <span class="k">via GTM, already with email and phone</span></td><td class="r">default</td></tr>
+        <tr><td>In contact</td><td>SAL</td><td>SAL</td><td class="r">R$10</td></tr>
+        <tr><td>Visit booked</td><td>Visit booked</td><td>Visit booked</td><td class="r">R$100</td></tr>
+        <tr><td>Visit completed / project</td><td>SQL</td><td>SQL</td><td class="r">R$1,000</td></tr>
+        <tr><td>Sale</td><td>Sale won <span class="k">Meta, WhatsApp or unknown source</span>Sale won - other sources <span class="k">Google sale, as an audience signal only</span></td><td>Sale</td><td class="r">real deal value</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="prose muted">The stage values teach Google's value-based bidding that a booked visit is worth ten times a first contact, and that a sale is worth what was sold.</p>
+</section>
+
+<section>
+  <span class="eyebrow">03 · Decisions</span>
+  <h2>The choices that make a difference</h2>
+  <div class="decisions">
+    <details open>
+      <summary>Not requiring the form ID when sending to Meta</summary>
+      <div class="dbody">
+        <p>The lead form ID is the best data point for tying an event to an ad, but it <strong>isn't required</strong>. Without it, Meta finds the person by phone, name, city, state and external ID. On WhatsApp the phone number is always real.</p>
+        <p>Result: 151 of 500 leads that used to be dropped now count toward the quality score, audiences and lookalikes. The ID is still sent whenever it exists.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Each platform only gets its own leads</summary>
+      <div class="dbody">
+        <p>If a Google lead were sent to Meta, Meta could take credit for it (the person only needs to have seen an ad within the attribution window). A filter at the entry point separates the sources:</p>
+<pre><span class="c">// send to Meta if:</span>
+has_form_id
+  OR (no GCLID AND utm_source != <span class="s">"google_ads"</span>)
+  OR stage == <span class="s">"Sale"</span>   <span class="c">// see next decision</span></pre>
+      </div>
+    </details>
+    <details>
+      <summary>Google sales go to Meta, but as a different event</summary>
+      <div class="dbody">
+        <p>Meta learns better from every buyer, not just its own. A Google-sourced sale is sent as <strong>"Sale won - other sources"</strong>: it feeds audiences and lookalikes, but doesn't inflate "Sale won", which remains the optimization and reporting event.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Enhanced conversions in Google, through the API directly</summary>
+      <div class="dbody">
+        <p>Make's built-in module only accepts GCLID. I replaced it with a direct call to the Google Ads API, with phone and email normalized and SHA-256 hashed. That way, leads without a GCLID get attributed too.</p>
+<pre><span class="c">// before hashing</span>
+phone  = digits_only(phone)
+if not starts_with(phone, <span class="s">"55"</span>): phone = <span class="s">"55"</span> + phone
+email  = lowercase(trim(email))
+hashed = sha256(phone), sha256(email)</pre>
+      </div>
+    </details>
+    <details>
+      <summary>Nothing is counted twice</summary>
+      <div class="dbody">
+        <p>Every event carries a unique ID built from the contact and the stage. If the same notification arrives twice, the platform drops the duplicate. In Google, the order ID is the lead ID.</p>
+<pre>event_id = <span class="s">"{contact_id}-{stage_id}"</span>     <span class="c">// Meta</span>
+order_id = <span class="s">"{lead_id}"</span>                    <span class="c">// Google</span></pre>
+      </div>
+    </details>
+    <details>
+      <summary>Risk-free cutover</summary>
+      <div class="dbody">
+        <p>Backup of the old scenario, new scenario built while switched off, then a test with a real lead using Meta's test event code and the Google API's validation mode. Only after that was the webhook URL swapped stage by stage in the CRM, and the old scenario was switched off, not deleted.</p>
+        <p>A "contact exists" filter keeps a lead without a contact from breaking the scenario: Make switches a scenario off on its own at the first error, and nobody gets notified.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">04 · History</span>
+  <h2>Recovering 3.5 months of signal</h2>
+  <p class="prose muted">Turning the automation back on fixed things going forward, but Google had spent months without knowing which leads became visits and sales. I built a one-off upload using the <strong>real date</strong> each card changed stage in the CRM (not the upload date), one conversion per lead per stage.</p>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Stage</th><th class="r">Sent</th><th class="r">Accepted</th><th>Rate</th></tr></thead>
+      <tbody>
+        <tr><td>SAL (in contact)</td><td class="r">262</td><td class="r">201</td><td>77%<div class="bar"><span style="width:77%"></span></div></td></tr>
+        <tr><td>Visit booked</td><td class="r">58</td><td class="r">54</td><td>93%<div class="bar"><span style="width:93%"></span></div></td></tr>
+        <tr><td>SQL (visit completed)</td><td class="r">16</td><td class="r">15</td><td>94%<div class="bar"><span style="width:94%"></span></div></td></tr>
+        <tr><td>Sale</td><td class="r">10</td><td class="r">7</td><td>70%<div class="bar"><span style="width:70%"></span></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="prose muted">About 85% accepted overall. What was left out are clicks older than 90 days, Google's own limit: almost all of them first contacts from August, plus three sales from older leads.</p>
+</section>
+
+<section>
+  <span class="eyebrow">05 · Early signals</span>
+  <h2>What changed in the first week</h2>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Indicator</th><th>Before</th><th>After</th></tr></thead>
+      <tbody>
+        <tr><td>Event match quality in Meta</td><td>SAL 0.0</td><td class="ok">Lead 5.2 · SAL 4.8 · Sale 4.8</td></tr>
+        <tr><td>Events in Meta over 4 days</td><td>6</td><td class="ok">15</td></tr>
+        <tr><td>Data per event in Meta</td><td>form ID only</td><td class="ok">phone, name and external ID on 100%; city and state on 40%</td></tr>
+        <tr><td>Google leads without a GCLID</td><td>never sent</td><td class="ok">sent with phone and email</td></tr>
+        <tr><td>Stages in Google since July</td><td>none</td><td class="ok">live, plus the recovered history</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="prose muted">Email is only available for 20% of leads, because most active forms don't ask for it. That's the next quality gain: asking for email on the forms.</p>
+</section>
+
+<section>
+  <span class="eyebrow">06 · Impact</span>
+  <h2>How results will be measured</h2>
+  <span class="status">In progress · results once November closes</span>
+  <p class="prose muted">The source of truth is the CRM, not the platforms' conversion column, which now counts the stages and naturally goes up. November will be compared with the August to October average, using the same counting rule.</p>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Baseline (Aug to Oct 2026)</th><th class="r">Google Ads</th><th class="r">Meta Ads</th></tr></thead>
+      <tbody>
+        <tr><td>Monthly spend</td><td class="r">R$6,063</td><td class="r">R$2,444</td></tr>
+        <tr><td>New CRM leads per month</td><td class="r">126</td><td class="r">89</td></tr>
+        <tr><td>Cost per lead</td><td class="r">R$48.12</td><td class="r">R$27.46</td></tr>
+        <tr><td>Cost per booked visit</td><td class="r">R$233</td><td class="r">R$1,222</td></tr>
+        <tr><td>Cost per sale</td><td class="r">R$1,213</td><td class="r">no sales</td></tr>
+        <tr><td>Return (sales value / spend)</td><td class="r">14.8x</td><td class="r">0</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="prose muted">Success criteria: November below the worst of the three months in cost per visit (R$257) and cost per sale (R$1,542) on Google, and Meta starting to generate visits at a cost close to Google's. Since the store's sales cycle is long, a second reading in January looks at the leads created in November.</p>
+  <ul class="timeline">
+    <li class="done"><span class="d">Nov 5</span><span>Recovered history in Google checked: 85% accepted</span></li>
+    <li><span class="d">Nov 18</span><span>First reading: Google stage conversions matching the CRM, plus Meta quality score and volume</span></li>
+    <li><span class="d">Dec 1</span><span>November closed against the baseline</span></li>
+    <li><span class="d">Jan 5</span><span>Second reading based on leads created in November</span></li>
+  </ul>
+</section>
+
+<footer>
+  <span>Thiego Dantas · Paid Media Specialist</span>
+  <span>Real numbers, client anonymized. See also the <a href="https://tdmtrafego.github.io/portfolio-dashboard/?lang=en">Paid Media Dashboard</a> and <a href="../?lang=en">all my links</a>.</span>
+</footer>
+
+</main>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    function apply(l) {
+      root.dataset.lang = l;
+      root.lang = l === "en" ? "en" : "pt-BR";
+      document.title = l === "en" ? "CRM-to-sale conversion tracking" : "Rastreamento do CRM até a venda";
+      document.querySelectorAll("[data-set-lang]").forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b.dataset.setLang === l));
+      });
+    }
+    apply(root.dataset.lang || "pt");
+    document.querySelectorAll("[data-set-lang]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var l = b.dataset.setLang;
+        apply(l);
+        try {
+          localStorage.setItem("painel-lang", l);
+          var u = new URL(location.href); u.searchParams.set("lang", l); history.replaceState(null, "", u);
+        } catch (e) {}
+      });
+    });
+  })();
+</script>
 </body>
 </html>
